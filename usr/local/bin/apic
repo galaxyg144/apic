@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument("-pu", action="store_true", help="PUT request")
     parser.add_argument("-pa", action="store_true", help="PATCH request")
     parser.add_argument("-d", action="store_true", help="DELETE request")
-    parser.add_argument("-he", action="store_true", help="HEAD request")
+    parser.add_argument("-hE", "--head", action="store_true", help="HEAD request")
 
     # Headers, body, file upload, query
     parser.add_argument("-H", "--header", action="append", help="Custom headers: -H 'Authorization: TOKEN'")
@@ -29,6 +29,15 @@ def parse_args():
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     parser.add_argument("-t", type=int, default=10, help="Request timeout in seconds")  # short flag for timeout
 
+       # Version flag
+    parser.add_argument("--version", action="version", version="apic 1.0.1", help="Show program version and exit")
+
+
+        # If no arguments are provided, show help
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(0)
+    
     return parser.parse_args()
 
 def main():
@@ -42,7 +51,7 @@ def main():
     elif args.pu: method = "PUT"
     elif args.pa: method = "PATCH"
     elif args.d: method = "DELETE"
-    elif args.h: method = "HEAD"
+    elif args.hE: method = "HEAD"
 
     # Parse headers
     headers = {}

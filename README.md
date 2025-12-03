@@ -7,51 +7,55 @@ apic is A terminal-based HTTP client for GET, POST, PUT, PATCH, DELETE, HEAD req
 ## Commands / How to Use
 
 ```bash
-apic <URL> [flags]
-HTTP Method Flags
-Flag	Method	Description
--g	GET	Make a GET request
--p	POST	Make a POST request
--pu	PUT	Make a PUT request
--pa	PATCH	Make a PATCH request
--d	DELETE	Make a DELETE request
--h	HEAD	Make a HEAD request
+usage: apic [-h] [-g] [-p] [-pu] [-pa] [-d] [-hE] [-H HEADER]
+            [-B BODY] [-F FILE] [-q QUERY] [-o OUTPUT] [-v] [-t T]
+            [--version]
+            url
 
-Headers and Body
-Flag	Description
--H 'Key: Value'	Add custom header. Can be used multiple times
--B '<body>'	Request body (JSON or raw)
--F 'field=@file'	Upload a file
+apic - Terminal API Client
 
-Other Options
-Flag	Description
--q 'key=value&key2=value2'	Query parameters
--o <file>	Save response to file
--v	Verbose output
--t <seconds>	Request timeout (default 10s)
-```
+positional arguments:
+  url                   Target URL
 
-## Examples
+options:
+  -h, --help            show this help message and exit
+  -g                    GET request
+  -p                    POST request
+  -pu                   PUT request
+  -pa                   PATCH request
+  -d                    DELETE request
+  -hE, --head           HEAD request
+  -H HEADER, --header HEADER
+                        Custom headers: -H 'Authorization: TOKEN'
+  -B BODY, --body BODY  Request body (JSON or raw)
+  -F FILE, --file FILE  File uploads: -F 'field=@file'
+  -q QUERY, --query QUERY
+                        Query params: key=value&key2=value2
+  -o OUTPUT, --output OUTPUT
+                        Save response to file
+  -v, --verbose         Verbose output
+  -t T                  Request timeout in seconds
+  --version             Show program version and exit
 ```
 GET request with query params:
-
+```
 apic https://api.example.com/items -g -q "page=2&limit=5"
 ```
 
-```
-POST request with JSON body and headers:
 
+POST request with JSON body and headers:
+```
 apic https://api.example.com/login -p -B '{"username":"user","password":"pass"}' -H "Authorization: Bearer TOKEN"
 ```
-```
-Upload a file with PUT:
 
+Upload a file with PUT:
+```
 apic https://api.example.com/upload -pu -F "file=@myfile.png"
 ```
 
-```
-Save response to a file:
 
+Save response to a file:
+```
 apic https://api.example.com/data -g -o response.json
 ```
 
