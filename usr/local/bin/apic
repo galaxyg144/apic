@@ -51,7 +51,7 @@ def main():
     elif args.pu: method = "PUT"
     elif args.pa: method = "PATCH"
     elif args.d: method = "DELETE"
-    elif args.hE: method = "HEAD"
+    elif args.head: method = "HEAD"
 
     # Parse headers
     headers = {}
