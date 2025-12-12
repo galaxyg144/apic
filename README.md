@@ -67,6 +67,7 @@ wget https://github.com/galaxyg144/apic/releases/latest/download/apic.deb
 ```
 
 - Install it:
+### Debian/Ubuntu
 ```
 sudo dpkg -i apic.deb
 sudo apt-get install -f
@@ -76,7 +77,12 @@ sudo apt-get install -f
 ```
 apic https://example.com -g
 ```
+### Arch Linux
+  - i dont know tbh i dont use arch just build from source
 
+### Build From Source
+  - Clone the repository (duh)
+  - Run `./build.sh`
 ## Notes
 
 - Make sure python3 and python3-requests are installed.
